@@ -22,10 +22,4 @@ jobs:
           version: "latest"
           verb: call
           module: github.com/staticaland/dagger-cog@main
-          args: >-
-            cog
-              --file="README.md"
-              --replace
-
-              export
-                  --path="."
+          args: 'cog --file="README.md" --replace export --path="."'
