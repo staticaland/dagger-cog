@@ -13,16 +13,33 @@ type DaggerCog struct{}
 // Usage: dagger call cog --dir="." --file="README.md" --replace export --path="."
 
 // Cog runs the cog command on the provided file within a Python container.
-// It installs the cogapp package, copies the file into the container, and executes cog -r on the file.
+// It installs the cogapp package, copies the directory into the container, and executes cog with the specified options.
 //
 // Parameters:
 //
-//	ctx  - The context for the operation.
-//	file - The file to be processed by cog.
+//	ctx          - The context for the operation.
+//	checksum     - Checksum the output to protect it against accidental change. (optional)
+//	delete       - Delete the generator code from the output file. (optional)
+//	warnEmpty    - Warn if a file has no cog code in it. (optional)
+//	includePaths - Add PATH to the list of directories for data files and modules. (optional)
+//	encoding     - Use ENCODING when reading and writing files. (optional)
+//	outputName   - Write the output to OUTNAME. (optional)
+//	prologue     - Prepend the generator source with PROLOGUE. (optional)
+//	usePrint     - Use print() instead of cog.outl() for code output. (optional)
+//	replace      - Replace the input file with the output. (optional)
+//	suffix       - Suffix all generated output lines with STRING. (optional)
+//	unixNewlines - Write the output with Unix newlines (only LF line-endings). (optional)
+//	writeCmd     - Use CMD if the output file needs to be made writable. (optional)
+//	excise       - Excise all the generated output without running the generators. (optional)
+//	assumeOutput - The end-output marker can be omitted, and is assumed at eof. (optional)
+//	markers      - The patterns surrounding cog inline instructions. (optional)
+//	verbosity    - Control the amount of output. (optional)
+//	file         - The input file to be processed by cog.
+//	dir          - The directory containing the file to be processed by cog.
 //
 // Returns:
 //
-//	*dagger.File - The processed file.
+//	*dagger.Directory - The processed directory.
 func (m *DaggerCog) Cog(ctx context.Context,
 	// Checksum the output to protect it against accidental change.
 	// +optional
