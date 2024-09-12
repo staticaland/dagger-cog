@@ -89,7 +89,6 @@ func (m *DaggerCog) Cog(ctx context.Context,
 	// Initialize the base command arguments
 	execArgs := []string{
 		"cog",
-		"README.md",
 	}
 
 	// Add options to execArgs
@@ -141,6 +140,8 @@ func (m *DaggerCog) Cog(ctx context.Context,
 	if verbosity != 0 {
 		execArgs = append(execArgs, "--verbosity", fmt.Sprintf("%d", verbosity))
 	}
+
+	execArgs = append(execArgs, "README.md")
 
 	return dag.Container().
 		From("python:slim").
