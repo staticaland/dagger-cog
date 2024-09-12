@@ -35,7 +35,7 @@ type DaggerCog struct{}
 //	markers      - The patterns surrounding cog inline instructions. (optional)
 //	verbosity    - Control the amount of output. (optional)
 //	file         - The input file to be processed by cog.
-//	dir          - The directory containing the file to be processed by cog.
+//	source       - The directory containing the file to be processed by cog.
 //
 // Returns:
 //
@@ -91,7 +91,9 @@ func (m *DaggerCog) Cog(ctx context.Context,
 	verbosity int,
 	// The input file to be processed by cog.
 	file string,
-	dir *dagger.Directory) *dagger.Directory {
+	// +defaultPath="/"
+	// +ignore=[".git", "*.env", ".github"]
+	source *dagger.Directory) *dagger.Directory {
 
 	// Initialize the base command arguments
 	execArgs := []string{
@@ -153,7 +155,7 @@ func (m *DaggerCog) Cog(ctx context.Context,
 	return dag.Container().
 		From("python:slim").
 		WithExec([]string{"pip", "install", "cogapp"}).
-		WithDirectory("/src", dir).
+		WithDirectory("/src", source).
 		WithWorkdir("/src").
 		WithExec(execArgs).
 		Directory("/src")
