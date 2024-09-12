@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/staticaland/dagger-cog/compare/v1.0.0...v1.1.0) (2024-09-12)
+
+
+### Features
+
+* Update Dagger to v0.13.0 and use defaultPath for source ([f9d56be](https://github.com/staticaland/dagger-cog/commit/f9d56be0413ec554af8d60e5f11ab59b4c3f9a48))
+
 ## 1.0.0 (2024-09-12)
 
 
