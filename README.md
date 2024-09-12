@@ -14,6 +14,7 @@ output = subprocess.check_output(['ls']).decode('utf-8')
 cog.out(f"```sh\n{output}```")
 ]]] -->
 ```sh
+CHANGELOG.md
 LICENSE
 README.md
 dagger.gen.go
@@ -22,5 +23,6 @@ go.mod
 go.sum
 internal
 main.go
+release-please-config.json
 ```
 <!-- [[[end]]] -->
