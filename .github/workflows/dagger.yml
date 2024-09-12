@@ -21,12 +21,11 @@ jobs:
         with:
           version: "latest"
           verb: call
-          module: github.com/staticaland/dagger-boilerplate/boilerplate@main
+          module: github.com/staticaland/dagger-cog@main
           args: >-
             cog
-                --dir="."
-                --file="README.md"
-                --replace
+              --file="README.md"
+              --replace
 
-                export
-                    --path="."
+              export
+                  --path="."
