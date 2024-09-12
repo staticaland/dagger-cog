@@ -1,16 +1,4 @@
-// A generated module for DaggerCog functions
-//
-// This module has been generated via dagger init and serves as a reference to
-// basic module structure as you get started with Dagger.
-//
-// Two functions have been pre-created. You can modify, delete, or add to them,
-// as needed. They demonstrate usage of arguments and return types using simple
-// echo and grep commands. The functions can be called from the dagger CLI or
-// from one of the SDKs.
-//
-// The first line in this comment block is a short description line and the
-// rest is a long description with more detail on the module's purpose or usage,
-// if appropriate. All modules should have a short description.
+// Cog CLI - generate content with inlined Python code.
 
 package main
 
@@ -22,7 +10,7 @@ import (
 
 type DaggerCog struct{}
 
-// Usage: dagger call cog --dir="." export --path="."
+// Usage: dagger call cog --dir="." --file="README.md" --replace export --path="."
 
 // Cog runs the cog command on the provided file within a Python container.
 // It installs the cogapp package, copies the file into the container, and executes cog -r on the file.
@@ -84,6 +72,8 @@ func (m *DaggerCog) Cog(ctx context.Context,
 	// Control the amount of output.
 	// +optional
 	verbosity int,
+	// The input file to be processed by cog.
+	file string,
 	dir *dagger.Directory) *dagger.Directory {
 
 	// Initialize the base command arguments
@@ -141,7 +131,7 @@ func (m *DaggerCog) Cog(ctx context.Context,
 		execArgs = append(execArgs, "--verbosity", fmt.Sprintf("%d", verbosity))
 	}
 
-	execArgs = append(execArgs, "README.md")
+	execArgs = append(execArgs, file)
 
 	return dag.Container().
 		From("python:slim").

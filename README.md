@@ -1,4 +1,10 @@
-# Wuz
+# Usage
+
+```sh
+dagger call cog --dir="." --file="README.md" --replace export --path="."
+```
+
+## Output from the command above
 
 <!-- [[[cog
 import subprocess
