@@ -41,6 +41,12 @@ type DaggerCog struct{}
 //
 //	*dagger.Directory - The processed directory.
 func (m *DaggerCog) Cog(ctx context.Context,
+	// Apt installs the specified package using apt-get. Can be set multiple times.
+	// +optional
+	Apt []string,
+	// Pip installs the specified package using pip. Can be set multiple times.
+	// +optional
+	Pip []string,
 	// Checksum the output to protect it against accidental change.
 	// +optional
 	checksum bool,
@@ -151,8 +157,21 @@ func (m *DaggerCog) Cog(ctx context.Context,
 
 	execArgs = append(execArgs, file)
 
-	return dag.Container().
-		From("python:slim").
+	container := dag.Container().
+    From("python:slim")
+
+	if len(Apt) > 0 {
+	    container = container.
+	        WithExec([]string{"apt-get", "update"}).
+	        WithExec(append([]string{"apt-get", "install", "-y"}, Apt...))
+	}
+
+	if len(Pip) > 0 {
+	    container = container.
+	        WithExec(append([]string{"pip", "install"}, Pip...))
+	}
+
+	return container.
 		WithExec([]string{"pip", "install", "cogapp"}).
 		WithDirectory("/src", source).
 		WithWorkdir("/src").
