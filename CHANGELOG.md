@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/staticaland/dagger-cog/compare/v1.1.0...v1.2.0) (2024-09-14)
+
+
+### Features
+
+* Remove defaultPath key ([#4](https://github.com/staticaland/dagger-cog/issues/4)) ([f39fb80](https://github.com/staticaland/dagger-cog/commit/f39fb8079b32e8329877a830e116fe6df5f2a5c7))
+
 ## [1.1.0](https://github.com/staticaland/dagger-cog/compare/v1.0.0...v1.1.0) (2024-09-12)
 
 
