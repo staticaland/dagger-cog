@@ -91,7 +91,6 @@ func (m *DaggerCog) Cog(ctx context.Context,
 	verbosity int,
 	// The input file to be processed by cog.
 	file string,
-	// +defaultPath="/"
 	// +ignore=[".git", "*.env", ".github"]
 	source *dagger.Directory) *dagger.Directory {
 
